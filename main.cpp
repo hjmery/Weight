@@ -1,7 +1,6 @@
 #include "weight.hpp"
 
 #include <iomanip>
-#include <iostream>
 
 // ------------------------------------------------------------------
 //
