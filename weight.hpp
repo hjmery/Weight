@@ -23,8 +23,8 @@ namespace usu
         weight();
         weight(T1 count);
         T1 count();
-        weight operator+(weight& w1, weight& w2);
-        weight operator-(weight& w1, weight& w2);
+        weight operator+(weight w);
+        weight operator-(weight w);
     };
 
     template <typename T, typename T1>
@@ -46,16 +46,16 @@ namespace usu
     }
 
     template <typename T, typename T1>
-    T operator+(T& w1, T1& w2)
+    T operator+(T w)
     {
-        T returnWeight(w1.count() + w2.count());
+        T returnWeight(this->count() + w.count());
         return returnWeight;
     }
 
     template <typename T, typename T1>
-    T operator-(T& w1, T1& w2)
+    T operator-(T w)
     {
-        T returnWeight(w1.count() - w2.count());
+        T returnWeight(this->count() - w.count());
         return returnWeight;
     }
 
