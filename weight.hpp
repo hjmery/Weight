@@ -6,10 +6,11 @@
 /*
 -------------------------------------------------------------------------------
 Next steps
--Finish the type aliases |X|
+-Finish the type aliases  |X|
 -Overload the 3 operators |X|
--Write weight_cast |X|
--Test agains GTests||
+-Write weight_cast        |X|
+-Fix Errors               |X|
+-Test agains GTests       ||
 -------------------------------------------------------------------------------
 */
 
@@ -23,8 +24,18 @@ namespace usu
         weight();
         weight(T1 count);
         T1 count();
-        weight operator+(weight w);
-        weight operator-(weight w);
+
+        weight operator+(weight w)
+        {
+            T returnWeight(this->count() + w.count());
+            return returnWeight;
+        }
+
+        weight operator-(weight w)
+        {
+            T returnWeight(this->count() - w.count());
+            return returnWeight;
+        }
     };
 
     template <typename T, typename T1>
@@ -45,7 +56,7 @@ namespace usu
         return m_count;
     }
 
-    template <typename T, typename T1>
+    /* template <typename T, typename T1>
     T operator+(T w)
     {
         T returnWeight(this->count() + w.count());
@@ -57,10 +68,10 @@ namespace usu
     {
         T returnWeight(this->count() - w.count());
         return returnWeight;
-    }
+    }*/
 
-    template <typename T, typename T1>
-    T1 weight_cast(T w)
+    template <typename T, typename T1 = weight<T>>
+    T weight_cast(T1 w)
     {
         //T::ratio::num , T::ratio::den
         std::uint64_t inNew = (T::ratio::num / T::ratio::den * w.count()) / (T1::ratio::num / T1::rato::den);
@@ -76,7 +87,7 @@ namespace usu
         return 0;
     }*/
 
-    template <typename T, typename T1>
+    template <typename T>
     T operator*(T& weight, double dub)
     {
         //multiply count by the dub variable and return that exact weight class variable
@@ -84,7 +95,8 @@ namespace usu
         return returnWeight;
     }
 
-    template <typename T, typename T1>
+    template <typename T>
+
     T operator*(double dub, T& weight)
     {
         //multiply count by the dub variable and return that exact weight class variable
